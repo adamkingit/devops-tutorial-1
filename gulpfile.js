@@ -5,14 +5,19 @@ var paths = {
   html:['views/**/*.html'],
   css:['public/**/*.css'],
   js:['app.js','public/**/*.js','routes/**/*.js'],
+  clean:['reports/**/*']
 };
 
 gulp.task('default', function(callback) {
   var runSequence=require('run-sequence');
-  runSequence('lint', 'dev-unit', callback);
+  runSequence('clean','lint', 'dev-unit', callback);
   });
 
-
+  gulp.task('clean', function () {
+      var clean = require('gulp-clean');
+      return gulp.src(paths.clean, {read: false})
+          .pipe(clean());
+  });
 
 /*
  Gulp tasks for linting
