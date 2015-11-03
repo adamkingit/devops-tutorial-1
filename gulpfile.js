@@ -13,6 +13,7 @@ gulp.task('default', function(callback) {
   });
 
 
+
 /*
  Gulp tasks for linting
  */
@@ -47,10 +48,10 @@ gulp.task('lint-jscs', function() {
               "requireCapitalizedComments": { "allExcept":["jslint", "jshint"]},
               "requireCurlyBraces": null
           }))
+    .pipe(jscs.reporter('fail'))
     .pipe(logCapture.start(console, 'log'))
     .pipe(jscs.reporter(jscsJenkinsReporter))
     .pipe(logCapture.stop('xml'))
-    .pipe(jscs.reporter('fail'))
     .pipe(gulp.dest('./reports'))
     ;
 });
