@@ -105,6 +105,8 @@ gulp.task('dev-karma', function(done) {
 //Task for mocha (server) unit tests
 gulp.task('dev-mocha', function() {
   var mocha = require('gulp-mocha');
+  var mkdirp = require('mkdirp');
+  mkdirp.sync('./reports/api');
   return gulp.src('test/unit/server/**/*spec.js', {read: false})
     .pipe(mocha({
       globals:['expect'],
