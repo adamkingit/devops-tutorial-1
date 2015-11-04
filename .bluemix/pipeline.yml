@@ -46,19 +46,19 @@ stages:
           #!/bin/bash
           node ./node_modules/gulp/bin/gulp lint
         enable_tests: true
-        test_file_pattern: 'test/*.xml'
+        test_file_pattern: 'reports/*.xml'
       - name: Unit Tests
         type: tester
         script: |-
           #!/bin/bash
-          # Karma Unit Test, output file: test/*.xml
+          # Karma Unit Test, output file: reports/*.xml
           node ./node_modules/gulp/bin/gulp dev-karma
-          # Mocha Unit Test, output file: test/*.xml
+          # Mocha Unit Test, output file: reports/*.xml
           node ./node_modules/gulp/bin/gulp dev-mocha
           # Mocha Api Unit Test, output file: xunit.xml
-          node ./node_modules/mocha/bin/mocha --recursive --reporter xunit-file test/api/
+          node ./node_modules/mocha/bin/mocha --recursive --reporter xunit-file reports/api/
         enable_tests: true
-        test_file_pattern: '*.xml, test/*.xml'
+        test_file_pattern: '*.xml, reports/*.xml'
       - name: Slack Notification
         type: tester
         script: |-
@@ -173,7 +173,7 @@ stages:
             npm test
           fi
         enable_tests: true
-        test_file_pattern: test/*.xml
+        test_file_pattern: reports/*.xml
       - name: Load Impact Test
         type: tester
         script: |-
